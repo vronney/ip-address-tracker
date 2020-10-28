@@ -1,3 +1,21 @@
+// Get local ip address 
+
+function localIp() {
+    let localIPAddress;
+
+    fetch('https://api.ipify.org/?format=json')
+        .then(results => results.json())
+        .then(data => JSON.stringify(
+            localIPAddress = data.ip,
+            console.log(localIPAddress)            
+        ))
+        .catch(error => console.log('error: ', error));
+
+    onSubmit(localIPAddress);    
+}
+
+localIp();
+
 document.querySelector('.input-group-append').addEventListener('click', onSubmit);
 
 let lat;
@@ -35,7 +53,7 @@ function onSubmit() {
     let api_key = "at_y3EdKwwYsYiAC6rY2oipX6cSKI7hz";
     let url = "https://geo.ipify.org/api/v1";
 
-    fetch(`${url}?apiKey=${api_key}&ipAddress=${ip}`,  {
+    fetch(`${url}?apiKey=${api_key}&ipAddress=${ip}&domain=${ip}`,  {
         method: 'GET'
     })
     .then(response => response.json())
